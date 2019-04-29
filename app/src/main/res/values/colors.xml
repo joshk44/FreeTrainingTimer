@@ -5,4 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="black_overlay">#66000000</color>
+
+
+    <color name="neonone">#00FECA</color>
+    <color name="neontwo">#FDF200</color>
+    <color name="neonthree">#FF85EA</color>
+    <color name="neonfour">#7B61F8</color>
 </resources>

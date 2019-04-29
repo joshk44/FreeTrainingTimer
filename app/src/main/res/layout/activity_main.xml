@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/neonone"
+            android:fontFamily="@font/gugi_regular"
+            android:hint="EXERCISE"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="100sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/neontwo"
+            android:fontFamily="@font/gugi_regular"
+            android:hint="REST"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="100sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/neonthree"
+            android:fontFamily="@font/gugi_regular"
+            android:hint="LAPS"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="100sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/gugi_regular"
+            android:background="@color/neonfour"
+            android:text="GO!"
+            android:textSize="100sp"
+            tools:text="GO" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
