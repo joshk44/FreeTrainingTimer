@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/excerciseTime"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -19,21 +20,25 @@
             android:hint="EXERCISE"
             android:inputType="number"
             android:singleLine="true"
-            android:textAlignment="center"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
             android:textSize="100sp" />
 
         <EditText
+            android:id="@+id/restTime"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:background="@color/neontwo"
             android:fontFamily="@font/gugi_regular"
             android:hint="REST"
             android:inputType="number"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textSize="100sp" />
 
         <EditText
+            android:id="@+id/laps"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -41,15 +46,17 @@
             android:fontFamily="@font/gugi_regular"
             android:hint="LAPS"
             android:inputType="number"
-            android:textAlignment="center"
-            android:textSize="100sp" />
+            android:gravity="center"
+            android:textSize="100sp"
+            />
 
         <Button
+            android:id="@+id/goButton"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:fontFamily="@font/gugi_regular"
             android:background="@color/neonfour"
+            android:fontFamily="@font/gugi_regular"
             android:text="GO!"
             android:textSize="100sp"
             tools:text="GO" />
