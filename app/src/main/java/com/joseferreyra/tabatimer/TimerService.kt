@@ -1,4 +1,4 @@
-package com.joseferreyra.freetrainingtimer
+package com.joseferreyra.tabatimer
 
 import android.app.Service
 import android.content.Intent
@@ -21,6 +21,8 @@ class TimerService : Service() {
     private var listener: ClockListener? = null
 
     private var timer: CountDownTimer? = null
+
+    private var counterStatus: COUNTERSTATUS? = null
 
     override fun onBind(intent: Intent): IBinder? {
         return myBinder
@@ -47,7 +49,6 @@ class TimerService : Service() {
     private fun setupTimer(seconds: Int, type: COUNTERTYPE) {
         if (timer == null)
             timer = object : CountDownTimer(seconds.times(1000).toLong(), 500) {
-
                 override fun onFinish() {
                     onTimerFinish(type)
                 }
@@ -59,6 +60,7 @@ class TimerService : Service() {
                     }
                 }
             }.start()
+            counterStatus = COUNTERSTATUS.RUNNING
     }
 
     private fun onTimerFinish(type: COUNTERTYPE) {
@@ -79,6 +81,8 @@ class TimerService : Service() {
             }
         } else {
             Log.d("Timer", "finish total")
+            counterStatus = COUNTERSTATUS.ENDED
+            listener?.onFinish()
             currentStep = 0
         }
     }
@@ -90,8 +94,14 @@ class TimerService : Service() {
     fun removeListener() {
         this.listener = null
     }
+
+    fun getStatus() = counterStatus
 }
 
 enum class COUNTERTYPE {
     EXCERSICE, REST
+}
+
+enum class COUNTERSTATUS {
+    RUNNING, ENDED
 }

@@ -1,4 +1,4 @@
-package com.joseferreyra.freetrainingtimer
+package com.joseferreyra.tabatimer
 
 import android.content.ComponentName
 import android.content.Context
@@ -6,19 +6,17 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.TextViewCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.util.DisplayMetrics
 import kotlinx.android.synthetic.main.activity_timer_running.*
 
 
 class TimerRunningActivity : AppCompatActivity(), ClockListener {
 
-
     var myService: TimerService? = null
     var isBound = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +48,19 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
             myService!!.setListener(this@TimerRunningActivity)
             isBound = true
             myService?.startTimer(10, 2, 2)
+            myService?.getStatus()?.let{updateCurrentStatus(it)}
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
             isBound = false
+        }
+    }
+
+    private fun updateCurrentStatus (it: COUNTERSTATUS) {
+        when (it) {
+            COUNTERSTATUS.ENDED -> {
+                textView?.text = "DONE"
+                textView.setTextColor(ContextCompat.getColor(this, R.color.neontwo))}
         }
     }
 
@@ -65,9 +72,9 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
 
     override fun onTick(seconds: Long, type: COUNTERTYPE) {
 
-        formatSeconds(seconds).let {
+        formatSeconds(seconds, type).let {
             if (textView?.text != it)
-                textView?.text = formatSeconds(seconds)
+                textView?.text = it
         }
 
         when (type) {
@@ -79,7 +86,19 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
         }
     }
 
-    fun formatSeconds(seconds: Long): String {
+    override fun onFinish() {
+        updateCurrentStatus(COUNTERSTATUS.ENDED)
+    }
+
+    private fun formatSeconds(seconds: Long, type: COUNTERTYPE): String {
+
+        if (seconds == 0L) {
+            return when (type) {
+                COUNTERTYPE.EXCERSICE -> "REST"
+                COUNTERTYPE.REST -> "GO"
+            }
+        }
+
         val minutes = "${seconds / 60}"
         var seconds = "${seconds % 60}".let {
             when (it.length) {
@@ -92,5 +111,6 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
 }
 
 interface ClockListener {
-    fun onTick(milisec: Long, type: COUNTERTYPE)
+    fun onTick (milisec: Long, type: COUNTERTYPE)
+    fun onFinish ()
 }

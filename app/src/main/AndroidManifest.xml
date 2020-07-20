@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.joseferreyra.freetrainingtimer">
+    package="com.joseferreyra.tabatimer">
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,8 @@
         <activity
             android:name=".TimerRunningActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme"/>
         <service
             android:name=".TimerService"
             android:enabled="true"
