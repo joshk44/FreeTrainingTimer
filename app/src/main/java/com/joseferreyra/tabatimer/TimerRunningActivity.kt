@@ -12,16 +12,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.util.DisplayMetrics
 import kotlinx.android.synthetic.main.activity_timer_running.*
 
+const val DATA = "data"
+
 
 class TimerRunningActivity : AppCompatActivity(), ClockListener {
 
     var myService: TimerService? = null
     var isBound = false
+    var data = intArrayOf(40,20,3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer_running)
         //bindService(intent, myConnection, Context.BIND_AUTO_CREATE)
+
+        data = intent.extras.getIntArray (DATA)
         val intent = Intent(this, TimerService::class.java)
         startService(intent)
         bindService(intent, myConnection, Context.BIND_AUTO_CREATE)
@@ -47,7 +52,7 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
             myService = binder.getService()
             myService!!.setListener(this@TimerRunningActivity)
             isBound = true
-            myService?.startTimer(10, 2, 2)
+            myService?.startTimer(data[0], data[1], data[2])
             myService?.getStatus()?.let{updateCurrentStatus(it)}
         }
 
