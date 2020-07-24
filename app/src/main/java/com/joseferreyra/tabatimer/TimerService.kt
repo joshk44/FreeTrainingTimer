@@ -15,6 +15,7 @@ class TimerService : Service() {
     var exercise = 0
     var rest = 0
     var totalSteps = 0
+    var cacheSeconds = 0L
 
     private val myBinder = MyLocalBinder()
 
@@ -48,15 +49,18 @@ class TimerService : Service() {
 
     private fun setupTimer(seconds: Int, type: COUNTERTYPE) {
         if (timer == null)
-            timer = object : CountDownTimer(seconds.times(1000).toLong(), 500) {
+            timer = object : CountDownTimer(seconds.times(1000).toLong(), 100) {
                 override fun onFinish() {
                     onTimerFinish(type)
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
                     millisUntilFinished.div(1000).let {
-                        listener?.onTick(it, type)
-                        Log.d("Timer", "tick $it $type")
+                        if (cacheSeconds != it) {
+                            cacheSeconds = it
+                            listener?.onTick(it, type)
+                            Log.d("Timer", "tick $it $type")
+                        }
                     }
                 }
             }.start()
