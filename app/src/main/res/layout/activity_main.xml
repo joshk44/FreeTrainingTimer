@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:background="@color/neonone"
             android:fontFamily="@font/gugi_regular"
-            android:hint="EXERCISE"
+            android:hint="ACTIVE"
             android:inputType="number"
             android:singleLine="true"
             android:autoSizeTextType="uniform"
