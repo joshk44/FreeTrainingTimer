@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/excerciseTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/neonone"
+            android:fontFamily="@font/gugi_regular"
+            android:hint="ACTIVE"
+            android:inputType="number"
+            android:singleLine="true"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:textSize="100sp" />
+
+        <EditText
+            android:id="@+id/restTime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:background="@color/neontwo"
+            android:fontFamily="@font/gugi_regular"
+            android:hint="REST"
+            android:inputType="number"
+            android:gravity="center"
+            android:textSize="100sp" />
+
+        <EditText
+            android:id="@+id/laps"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/neonthree"
+            android:fontFamily="@font/gugi_regular"
+            android:hint="LAPS"
+            android:inputType="number"
+            android:gravity="center"
+            android:textSize="100sp"
+            />
+
+        <Button
+            android:id="@+id/goButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/neonfour"
+            android:fontFamily="@font/gugi_regular"
+            android:text="GO!"
+            android:textSize="100sp"
+            tools:text="GO" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

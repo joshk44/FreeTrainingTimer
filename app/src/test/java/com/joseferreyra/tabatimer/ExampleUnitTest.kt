@@ -1,4 +1,4 @@
-package com.joseferreyra.freetrainingtimer
+package com.joseferreyra.tabatimer
 
 import org.junit.Test
 
