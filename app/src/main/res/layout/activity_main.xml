@@ -63,5 +63,8 @@
 
     </LinearLayout>
 
+    <include
+        layout="@layout/onboarding"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
