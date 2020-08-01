@@ -1,10 +1,16 @@
 package com.joseferreyra.tabatimer
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.TextViewCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.onboarding.*
+
+const val SHAREPREF = "TABATIMER"
+const val ONBOARDINGSHOWN = "onboarding"
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,13 +22,15 @@ class MainActivity : AppCompatActivity() {
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(laps, 10, 400, 1, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(goButton, 10, 400, 1, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
 
+        showOnBoarding()
+
         goButton.setOnClickListener {
             if (!excerciseTime?.text.isNullOrEmpty() && !restTime?.text.isNullOrEmpty() && !laps?.text.isNullOrEmpty()) {
                 val intent = Intent(this@MainActivity, TimerRunningActivity::class.java)
                 intent.putExtra(DATA, intArrayOf(
-                            excerciseTime?.text.toString().toInt(),
-                            restTime?.text.toString().toInt(),
-                            laps?.text.toString().toInt()))
+                        excerciseTime?.text.toString().toInt(),
+                        restTime?.text.toString().toInt(),
+                        laps?.text.toString().toInt()))
                 startActivity(intent)
             }
         }
@@ -95,5 +103,17 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun showOnBoarding() {
+        val sharedPreferences = getSharedPreferences(SHAREPREF, Context.MODE_PRIVATE)
+
+        if (!sharedPreferences.getBoolean(ONBOARDINGSHOWN, false)) {
+            onboardinng.visibility = View.VISIBLE
+            gotit.setOnClickListener {
+                onboardinng.visibility = View.GONE
+                sharedPreferences.edit().putBoolean(ONBOARDINGSHOWN, true).apply()
+            }
+        }
     }
 }

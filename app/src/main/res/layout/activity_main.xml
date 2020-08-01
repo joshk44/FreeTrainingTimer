@@ -15,27 +15,33 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:background="@color/neonone"
+            android:clickable="false"
+            android:cursorVisible="false"
             android:fontFamily="@font/gugi_regular"
-            android:hint="ACTIVE"
+            android:gravity="center"
+            android:hint="@string/active"
             android:inputType="number"
             android:singleLine="true"
-            android:autoSizeTextType="uniform"
-            android:gravity="center"
-            android:textSize="100sp" />
+            android:textAlignment="center"
+            android:textSize="80sp" />
 
         <EditText
             android:id="@+id/restTime"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:clickable="false"
+            android:cursorVisible="false"
             android:autoSizeTextType="uniform"
             android:background="@color/neontwo"
             android:fontFamily="@font/gugi_regular"
-            android:hint="REST"
-            android:inputType="number"
             android:gravity="center"
-            android:textSize="100sp" />
+            android:hint="@string/rest"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="80sp" />
 
         <EditText
             android:id="@+id/laps"
@@ -44,11 +50,13 @@
             android:layout_weight="1"
             android:background="@color/neonthree"
             android:fontFamily="@font/gugi_regular"
-            android:hint="LAPS"
-            android:inputType="number"
             android:gravity="center"
-            android:textSize="100sp"
-            />
+            android:hint="@string/laps"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="80sp" />
 
         <Button
             android:id="@+id/goButton"
@@ -58,12 +66,14 @@
             android:background="@color/neonfour"
             android:fontFamily="@font/gugi_regular"
             android:text="GO!"
-            android:textSize="100sp"
+            android:textSize="120sp"
             tools:text="GO" />
 
     </LinearLayout>
 
     <include
+        android:id="@+id/onboardinng"
+        android:visibility="gone"
         layout="@layout/onboarding"/>
 
 
