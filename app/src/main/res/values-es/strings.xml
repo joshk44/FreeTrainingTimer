@@ -6,5 +6,6 @@
     <string name="active">ACTIVO</string>
     <string name="rest">DESCANZO</string>
     <string name="laps">VUELTAS</string>
+    <string name="info">Configura los valores primero 🙏</string>
 
 </resources>
