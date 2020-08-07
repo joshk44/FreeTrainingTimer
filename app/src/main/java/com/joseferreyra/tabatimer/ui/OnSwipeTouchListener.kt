@@ -39,8 +39,6 @@ open class OnSwipeTouchListener : View.OnTouchListener {
                             onSwipeLeft()
                         }
                     }
-                } else {
-                    // onTouch(e);
                 }
             } catch (exception: Exception) {
                 exception.printStackTrace()
