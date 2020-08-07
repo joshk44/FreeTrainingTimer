@@ -25,9 +25,7 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer_running)
-        //bindService(intent, myConnection, Context.BIND_AUTO_CREATE)
-
-        data = intent.extras.getIntArray (DATA)
+        intent.extras?.getIntArray (DATA)?.let { data = it}
         val intent = Intent(this, TimerService::class.java)
         startService(intent)
         bindService(intent, myConnection, Context.BIND_AUTO_CREATE)
@@ -47,8 +45,7 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
     }
 
     private val myConnection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName,
-                                        service: IBinder) {
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
             val binder = service as TimerService.MyLocalBinder
             myService = binder.getService()
             myService!!.setListener(this@TimerRunningActivity)
