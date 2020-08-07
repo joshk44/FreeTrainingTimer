@@ -1,6 +1,5 @@
 package com.joseferreyra.tabatimer.ui
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -9,15 +8,15 @@ import com.joseferreyra.tabatimer.R
 import com.joseferreyra.tabatimer.data.HistoricalItem
 import com.joseferreyra.tabatimer.extensions.inflate
 
-class HistoricalAdapter(private val items: List<HistoricalItem>): RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
+class HistoricalAdapter(private val items: List<HistoricalItem>) : RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= ViewHolder( parent.inflate(R.layout.historical_item))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.historical_item))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind (items[position])
+        holder.bind(items[position])
     }
 
-    override fun getItemCount() =items.size
+    override fun getItemCount() = items.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -30,6 +29,5 @@ class HistoricalAdapter(private val items: List<HistoricalItem>): RecyclerView.A
             rest?.text = historicalItem.rest.toString()
             laps?.text = historicalItem.laps.toString()
         }
-
     }
 }
