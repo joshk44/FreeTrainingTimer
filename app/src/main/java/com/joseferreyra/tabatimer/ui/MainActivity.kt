@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
         showOnBoarding()
 
         goButton.setOnClickListener {
-            if (!excerciseTime?.text.isNullOrEmpty() && excerciseTime?.text != getString(R.string.active) &&
-                    !restTime?.text.isNullOrEmpty() && restTime?.text != getString(R.string.rest) &&
-                    !laps?.text.isNullOrEmpty() && laps?.text != getString(R.string.laps) ) {
+            if (!excerciseTime?.text.isNullOrEmpty() && excerciseTime?.text != getString(R.string.active) && excerciseTime?.text != "0" &&
+                    !restTime?.text.isNullOrEmpty() && restTime?.text != getString(R.string.rest) && restTime?.text != "0" &&
+                    !laps?.text.isNullOrEmpty() && laps?.text != getString(R.string.laps) && laps?.text != "0" ) {
                 val intent = Intent(this@MainActivity, TimerRunningActivity::class.java)
                 intent.putExtra(DATA, intArrayOf(
                         excerciseTime?.text.toString().toInt(),
@@ -112,7 +112,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showOnBoarding() {
         val sharedPreferences = getSharedPreferences(SHAREPREF, Context.MODE_PRIVATE)
-
         if (!sharedPreferences.getBoolean(ONBOARDINGSHOWN, false)) {
             onboardinng.visibility = View.VISIBLE
             gotit.setOnClickListener {
