@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.joseferreyra.tabatimer.R
 import com.joseferreyra.tabatimer.data.HistoricalItem
+import com.joseferreyra.tabatimer.databinding.HistoricalItemBinding
 import com.joseferreyra.tabatimer.extensions.inflate
 
 class HistoricalAdapter(private val items: List<HistoricalItem>) : RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
@@ -20,14 +21,12 @@ class HistoricalAdapter(private val items: List<HistoricalItem>) : RecyclerView.
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val active = itemView.findViewById<TextView>(R.id.active)
-        val rest = itemView.findViewById<TextView>(R.id.rest)
-        val laps = itemView.findViewById<TextView>(R.id.laps)
+        private val binding = HistoricalItemBinding.bind(itemView)
 
         fun bind(historicalItem: HistoricalItem) {
-            active?.text = historicalItem.active.toString()
-            rest?.text = historicalItem.rest.toString()
-            laps?.text = historicalItem.laps.toString()
+            binding.active?.text = historicalItem.active.toString()
+            binding.rest?.text = historicalItem.rest.toString()
+            binding.laps?.text = historicalItem.laps.toString()
         }
     }
 }
