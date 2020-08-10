@@ -9,9 +9,9 @@ import com.joseferreyra.tabatimer.data.HistoricalItem
 import com.joseferreyra.tabatimer.databinding.HistoricalItemBinding
 import com.joseferreyra.tabatimer.extensions.inflate
 
-class HistoricalAdapter(private val items: List<HistoricalItem>) : RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
+class HistoricalAdapter(private val items: List<HistoricalItem>, private val listener: (item: HistoricalItem) -> Unit) : RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.historical_item))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.historical_item), listener)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
@@ -19,7 +19,7 @@ class HistoricalAdapter(private val items: List<HistoricalItem>) : RecyclerView.
 
     override fun getItemCount() = items.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val listener: (item: HistoricalItem) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = HistoricalItemBinding.bind(itemView)
 
@@ -27,6 +27,9 @@ class HistoricalAdapter(private val items: List<HistoricalItem>) : RecyclerView.
             binding.active?.text = historicalItem.active.toString()
             binding.rest?.text = historicalItem.rest.toString()
             binding.laps?.text = historicalItem.laps.toString()
+            binding.root.setOnClickListener {
+                listener(historicalItem)
+            }
         }
     }
 }
