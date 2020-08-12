@@ -25,7 +25,7 @@ class TimerService : Service() {
 
     private var timer: CountDownTimer? = null
 
-    private var counterStatus: COUNTERSTATUS? = null
+    private var counterStatus: CounterStatus? = null
 
     private var mediaPlayerBump: MediaPlayer? = null
     private var mediaPlayerBim: MediaPlayer? = null
@@ -36,7 +36,7 @@ class TimerService : Service() {
         super.onCreate()
         mediaPlayerBim = MediaPlayer.create(this, R.raw.bim)
         mediaPlayerBump = MediaPlayer.create(this, R.raw.bump)
-        mediaPlayerFinish= MediaPlayer.create(this, R.raw.fin)
+        mediaPlayerFinish = MediaPlayer.create(this, R.raw.fin)
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -58,10 +58,10 @@ class TimerService : Service() {
     }
 
     private fun scheduleTimer() {
-        setupTimer(exercise, COUNTERTYPE.EXCERSICE)
+        setupTimer(exercise, CounterType.EXERCISE)
     }
 
-    private fun setupTimer(seconds: Int, type: COUNTERTYPE) {
+    private fun setupTimer(seconds: Int, type: CounterType) {
         if (timer == null)
             timer = object : CountDownTimer(seconds.times(1000).toLong(), 100) {
 
@@ -90,29 +90,29 @@ class TimerService : Service() {
                     }
                 }
             }.start()
-        counterStatus = COUNTERSTATUS.RUNNING
+        counterStatus = CounterStatus.RUNNING
     }
 
-    private fun onTimerFinish(type: COUNTERTYPE) {
+    private fun onTimerFinish(type: CounterType) {
         currentStep++
         timer = null
         if (currentStep < totalSteps) {
             Log.d("Timer", "finish lap $type")
             when (type) {
-                COUNTERTYPE.EXCERSICE -> {
+                CounterType.EXERCISE -> {
                     when (rest) {
-                        0 -> setupTimer(exercise, COUNTERTYPE.EXCERSICE)
-                        else -> setupTimer(rest, COUNTERTYPE.REST)
+                        0 -> setupTimer(exercise, CounterType.EXERCISE)
+                        else -> setupTimer(rest, CounterType.REST)
                     }
                 }
                 else -> {
-                    setupTimer(exercise, COUNTERTYPE.EXCERSICE)
+                    setupTimer(exercise, CounterType.EXERCISE)
                 }
             }
         } else {
             Log.d("Timer", "finish total")
             mediaPlayerFinish?.start()
-            counterStatus = COUNTERSTATUS.ENDED
+            counterStatus = CounterStatus.ENDED
             listener?.onFinish()
             currentStep = 0
         }
@@ -129,10 +129,10 @@ class TimerService : Service() {
     fun getStatus() = counterStatus
 }
 
-enum class COUNTERTYPE {
-    EXCERSICE, REST
+enum class CounterType {
+    EXERCISE, REST
 }
 
-enum class COUNTERSTATUS {
+enum class CounterStatus {
     RUNNING, ENDED
 }
