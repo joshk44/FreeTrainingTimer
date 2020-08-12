@@ -3,29 +3,25 @@ package com.joseferreyra.tabatimer.extensions
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.constraintlayout.widget.Placeholder
 import androidx.recyclerview.widget.RecyclerView
-import com.joseferreyra.tabatimer.R
 import com.joseferreyra.tabatimer.ui.OnSwipeTouchListener
 
-fun Context.toast (message: String) {
+fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-fun RecyclerView.ViewHolder.toast (message: String) {
+fun RecyclerView.ViewHolder.toast(message: String) {
     this.itemView.context.toast(message)
 }
 
-fun ViewGroup.inflate (@LayoutRes id: Int) = LayoutInflater.from(context).inflate(id, this, false)
-
+fun ViewGroup.inflate(@LayoutRes id: Int) = LayoutInflater.from(context).inflate(id, this, false)
 
 @SuppressLint("ClickableViewAccessibility")
-fun TextView.onSwipeListener (increment: Int, placeholder: String) {
+fun TextView.onSwipeListener(increment: Int, placeholder: String) {
 
     this.setOnTouchListener(object : OnSwipeTouchListener() {
         override fun onSwipeRight() {
@@ -47,6 +43,5 @@ fun TextView.onSwipeListener (increment: Int, placeholder: String) {
                 }
             })
         }
-
     })
 }
