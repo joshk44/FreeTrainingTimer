@@ -18,10 +18,10 @@ const val ONBOARDINGSHOWN = "onboarding"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -30,16 +30,16 @@ class MainActivity : AppCompatActivity() {
         binding.goButton.setOnClickListener {
             if (!binding.excerciseTime.text.isNullOrEmpty() && binding.excerciseTime.text != getString(R.string.active) && binding.excerciseTime?.text != "0" &&
                     !binding.restTime.text.isNullOrEmpty() && binding.restTime.text != getString(R.string.rest) && binding.restTime.text != "0" &&
-                    !binding.laps.text.isNullOrEmpty() && binding.laps.text != getString(R.string.laps) && binding.laps.text != "0" ) {
-                startActivity (Intent(this@MainActivity, TimerRunningActivity::class.java).apply {
+                    !binding.laps.text.isNullOrEmpty() && binding.laps.text != getString(R.string.laps) && binding.laps.text != "0") {
+                startActivity(Intent(this@MainActivity, TimerRunningActivity::class.java).apply {
                     this.putExtra(DATA, intArrayOf(
                             binding.excerciseTime.text.toString().toInt(),
                             binding.restTime.text.toString().toInt(),
                             binding.laps.text.toString().toInt()))
-                } )
+                })
 
-                HistoricalDataSource (getSharedPreferences("HISTORICAL", Context.MODE_PRIVATE)).store(
-                        HistoricalItem (binding.excerciseTime.text.toString().toInt(),
+                HistoricalDataSource(getSharedPreferences("HISTORICAL", Context.MODE_PRIVATE)).store(
+                        HistoricalItem(binding.excerciseTime.text.toString().toInt(),
                                 binding.restTime.text.toString().toInt(),
                                 binding.laps.text.toString().toInt()))
             } else {
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding.laps.onSwipeListener(1, getString(R.string.laps))
 
         binding.historicalFloating.setOnClickListener {
-            startActivity(Intent (this, HistoricalActivity::class.java))
+            startActivity(Intent(this, HistoricalActivity::class.java))
         }
     }
 
