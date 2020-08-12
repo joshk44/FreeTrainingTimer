@@ -6,26 +6,25 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.util.DisplayMetrics
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
-import androidx.appcompat.app.AppCompatActivity
-import android.util.DisplayMetrics
 import com.joseferreyra.tabatimer.R
 import kotlinx.android.synthetic.main.activity_timer_running.*
 
 const val DATA = "data"
 
-
 class TimerRunningActivity : AppCompatActivity(), ClockListener {
 
     var myService: TimerService? = null
     var isBound = false
-    var data = intArrayOf(40,20,3)
+    var data = intArrayOf(40, 20, 3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer_running)
-        intent.extras?.getIntArray (DATA)?.let { data = it}
+        intent.extras?.getIntArray(DATA)?.let { data = it }
         val intent = Intent(this, TimerService::class.java)
         startService(intent)
         bindService(intent, myConnection, Context.BIND_AUTO_CREATE)
@@ -51,7 +50,7 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
             myService!!.setListener(this@TimerRunningActivity)
             isBound = true
             myService?.startTimer(data[0], data[1], data[2])
-            myService?.getStatus()?.let{updateCurrentStatus(it)}
+            myService?.getStatus()?.let { updateCurrentStatus(it) }
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
@@ -59,11 +58,12 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
         }
     }
 
-    private fun updateCurrentStatus (it: COUNTERSTATUS) {
+    private fun updateCurrentStatus(it: CounterStatus) {
         when (it) {
-            COUNTERSTATUS.ENDED -> {
+            CounterStatus.ENDED -> {
                 textView?.text = "DONE"
-                textView.setTextColor(ContextCompat.getColor(this, R.color.neontwo))}
+                textView.setTextColor(ContextCompat.getColor(this, R.color.neontwo))
+            }
         }
     }
 
@@ -73,7 +73,7 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
         if (isBound) myService?.removeListener()
     }
 
-    override fun onTick(seconds: Long, type: COUNTERTYPE) {
+    override fun onTick(seconds: Long, type: CounterType) {
 
         formatSeconds(seconds, type).let {
             if (textView?.text != it)
@@ -81,8 +81,8 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
         }
 
         when (type) {
-            COUNTERTYPE.EXCERSICE -> ContextCompat.getColor(this, R.color.neonone)
-            COUNTERTYPE.REST -> ContextCompat.getColor(this, R.color.neonthree)
+            CounterType.EXERCISE -> ContextCompat.getColor(this, R.color.neonone)
+            CounterType.REST -> ContextCompat.getColor(this, R.color.neonthree)
         }.let {
             if (textView.textColors.defaultColor != it)
                 textView.setTextColor(it)
@@ -90,15 +90,15 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
     }
 
     override fun onFinish() {
-        updateCurrentStatus(COUNTERSTATUS.ENDED)
+        updateCurrentStatus(CounterStatus.ENDED)
     }
 
-    private fun formatSeconds(seconds: Long, type: COUNTERTYPE): String {
+    private fun formatSeconds(seconds: Long, type: CounterType): String {
 
         if (seconds == 0L) {
             return when (type) {
-                COUNTERTYPE.EXCERSICE -> "REST"
-                COUNTERTYPE.REST -> "GO"
+                CounterType.EXERCISE -> "REST"
+                CounterType.REST -> "GO"
             }
         }
 
@@ -114,6 +114,6 @@ class TimerRunningActivity : AppCompatActivity(), ClockListener {
 }
 
 interface ClockListener {
-    fun onTick (milisec: Long, type: COUNTERTYPE)
-    fun onFinish ()
+    fun onTick(milisec: Long, type: CounterType)
+    fun onFinish()
 }
