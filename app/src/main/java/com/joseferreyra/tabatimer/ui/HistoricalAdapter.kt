@@ -9,7 +9,8 @@ import com.joseferreyra.tabatimer.data.HistoricalItem
 import com.joseferreyra.tabatimer.databinding.HistoricalItemBinding
 import com.joseferreyra.tabatimer.extensions.inflate
 
-class HistoricalAdapter(private val items: List<HistoricalItem>, private val listener: (item: HistoricalItem) -> Unit) : RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
+class HistoricalAdapter(private val items: List<HistoricalItem>,
+                        private val listener: (item: HistoricalItem) -> Unit) : RecyclerView.Adapter<HistoricalAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.historical_item), listener)
 
