@@ -31,17 +31,8 @@ class MainActivity : AppCompatActivity() {
             if (!binding.excerciseTime.text.isNullOrEmpty() && binding.excerciseTime.text != getString(R.string.active) && binding.excerciseTime?.text != "0" &&
                     !binding.restTime.text.isNullOrEmpty() && binding.restTime.text != getString(R.string.rest) && binding.restTime.text != "0" &&
                     !binding.laps.text.isNullOrEmpty() && binding.laps.text != getString(R.string.laps) && binding.laps.text != "0") {
-                startActivity(Intent(this@MainActivity, TimerRunningActivity::class.java).apply {
-                    this.putExtra(DATA, intArrayOf(
-                            binding.excerciseTime.text.toString().toInt(),
-                            binding.restTime.text.toString().toInt(),
-                            binding.laps.text.toString().toInt()))
-                })
-
-                HistoricalDataSource(getSharedPreferences("HISTORICAL", Context.MODE_PRIVATE)).store(
-                        HistoricalItem(binding.excerciseTime.text.toString().toInt(),
-                                binding.restTime.text.toString().toInt(),
-                                binding.laps.text.toString().toInt()))
+                redirectToTimerActivity()
+                storeInHistorical()
             } else {
                 Toast.makeText(this, getString(R.string.info), Toast.LENGTH_LONG).show()
             }
@@ -54,6 +45,21 @@ class MainActivity : AppCompatActivity() {
         binding.historicalFloating.setOnClickListener {
             startActivity(Intent(this, HistoricalActivity::class.java))
         }
+    }
+
+    private fun storeInHistorical() {
+        HistoricalDataSource(getSharedPreferences("HISTORICAL", Context.MODE_PRIVATE)).store(
+                HistoricalItem(binding.excerciseTime.text.toString().toInt(),
+                        binding.restTime.text.toString().toInt(),
+                        binding.laps.text.toString().toInt()))    }
+
+    private fun redirectToTimerActivity() {
+        startActivity(Intent(this@MainActivity, TimerRunningActivity::class.java).apply {
+            this.putExtra(DATA, intArrayOf(
+                    binding.excerciseTime.text.toString().toInt(),
+                    binding.restTime.text.toString().toInt(),
+                    binding.laps.text.toString().toInt()))
+        })
     }
 
     private fun showOnBoarding() {
