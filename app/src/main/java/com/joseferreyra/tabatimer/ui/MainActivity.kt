@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         showOnBoarding()
 
         binding.goButton.setOnClickListener {
