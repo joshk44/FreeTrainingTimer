@@ -15,7 +15,8 @@ class HistoricalActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historical)
-        rvHistorical.adapter = HistoricalAdapter(HistoricalDataSource(sharedPreferences = getSharedPreferences("HISTORICAL", Context.MODE_PRIVATE)).getList()) {redirectToTimer(it) }
+        rvHistorical.adapter = HistoricalAdapter(
+                HistoricalDataSource(sharedPreferences = getSharedPreferences("HISTORICAL", Context.MODE_PRIVATE)).getList()) {redirectToTimer(it) }
         rvHistorical.layoutManager = LinearLayoutManager(this)
     }
 
