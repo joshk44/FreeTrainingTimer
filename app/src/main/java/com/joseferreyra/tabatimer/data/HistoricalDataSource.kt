@@ -1,6 +1,7 @@
 package com.joseferreyra.tabatimer.data
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 class HistoricalDataSource (private val sharedPreferences: SharedPreferences) {
 
@@ -14,7 +15,9 @@ class HistoricalDataSource (private val sharedPreferences: SharedPreferences) {
             this.add(historicalItem.toStoredValue())
             this
         }
-        sharedPreferences.edit().putStringSet("HISTORIC", newStored).apply()
+        sharedPreferences.edit {
+            putStringSet("HISTORIC", newStored)
+        }
     }
 
     fun getList() =
