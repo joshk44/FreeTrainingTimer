@@ -26,11 +26,16 @@ open class OnSwipeTouchListener : View.OnTouchListener {
             return true
         }
 
-        override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
             val result = false
             try {
-                val diffY = e2.y - e1.y
-                val diffX = e2.x - e1.x
+                val diffY = e2.y - (e1?.y ?: 0F)
+                val diffX = e2.x - (e1?.x ?: 0F)
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                         if (diffX > 0) {
@@ -44,8 +49,8 @@ open class OnSwipeTouchListener : View.OnTouchListener {
                 exception.printStackTrace()
             }
 
-            return result
-        }
+            return result        }
+
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
