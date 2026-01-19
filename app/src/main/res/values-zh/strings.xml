@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="swipe_to_set">滑动设置时间</string>
+    <string name="press_go">按 GO 开始！</string>
+    <string name="got_it">知道了！</string>
+    <string name="active">训练</string>
+    <string name="rest">休息</string>
+    <string name="laps">组数</string>
+    <string name="info">请先设置数值 🙏</string>
+</resources>

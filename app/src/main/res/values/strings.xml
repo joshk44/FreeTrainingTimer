@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tabatimer</string>
+    <string name="app_name" translatable="false">Tabatimer</string>
 
     <string name="swipe_to_set">Swipe to set time️</string>
     <string name="press_go">Press GO to Start!</string>

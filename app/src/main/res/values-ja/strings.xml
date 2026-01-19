@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="swipe_to_set">スワイプで時間を設定</string>
+    <string name="press_go">GOを押してスタート！</string>
+    <string name="got_it">了解！</string>
+    <string name="active">アクティブ</string>
+    <string name="rest">休憩</string>
+    <string name="laps">ラップ</string>
+    <string name="info">最初に値を設定してください 🙏</string>
+</resources>

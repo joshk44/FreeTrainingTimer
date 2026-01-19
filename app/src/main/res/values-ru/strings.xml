@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="swipe_to_set">Проведите, чтобы\nнастроить время</string>
+    <string name="press_go">Нажмите GO для старта!</string>
+    <string name="got_it">Понятно!</string>
+    <string name="active">АКТИВНО</string>
+    <string name="rest">ОТДЫХ</string>
+    <string name="laps">КРУГИ</string>
+    <string name="info">Сначала настройте значения 🙏</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="swipe_to_set">Glisser pour\nconfigurer</string>
+    <string name="press_go">Appuyez sur GO!</string>
+    <string name="got_it">Compris !</string>
+    <string name="active">ACTIF</string>
+    <string name="rest">REPOS</string>
+    <string name="laps">TOURS</string>
+    <string name="info">Réglez d\'abord les valeurs 🙏</string>
+</resources>

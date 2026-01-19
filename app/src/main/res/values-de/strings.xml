@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="swipe_to_set">Wischen, um\nZeit einzustellen</string>
+    <string name="press_go">Drücken Sie GO!</string>
+    <string name="got_it">Verstanden!</string>
+    <string name="active">AKTIV</string>
+    <string name="rest">PAUSE</string>
+    <string name="laps">RUNDEN</string>
+    <string name="info">Zuerst Werte einstellen 🙏</string>
+</resources>
